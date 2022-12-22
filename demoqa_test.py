@@ -27,29 +27,9 @@ def test_student_registration_form():
 
 
     browser.element('#currentAddress').type('Plehanova Street 1')
-    # browser.element('#state').click()
-    # browser.all('[id^=react-select][id*=options]').element_by(have.text('Uttar Pradesh')).click()
-    # browser.element('#city').click()
-    # browser.all('[id^=react-select][id*=options]').element_by(have.text('Agra')).click()
     browser.element('#react-select-3-input').type('Uttar Pradesh').press_enter()
     browser.element('#react-select-4-input').type('Agra').press_enter()
     browser.element('#submit').press_enter()
-
-    #THEN
-    # browser.element('.table').all('td:nth-of-type(2').should(
-    #     have.text(
-    #         'Elvira Askerova'
-    #         and 'elviraskerova@gmail.com'
-    #         and 'Female'
-    #         and '123456789'
-    #         and '8 December, 1990'
-    #         and 'Commerce'
-    #         and 'Reading'
-    #         and 'foto.jpg'
-    #         and 'Plehanova Street 1'
-    #         and 'Uttar Pradesh'
-    #         and 'Agra'
-    #     ))
 
     browser.element('.table').should(have.text(
             'Elvira Askerova'
