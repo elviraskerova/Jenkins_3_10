@@ -23,8 +23,7 @@ def test_student_registration_form():
     browser.element('[for=hobbies-checkbox-2]').click()
 
     browser.element('#uploadPicture').set_value(
-        os.path.abspath(os.path.join(os.path.dirname(__file__), 'attachments/photo.jpeg')))
-
+        os.path.abspath(os.path.join(os.path.dirname(__file__), '../attachments/photo.jpeg')))
 
     browser.element('#currentAddress').type('Plehanova Street 1')
     browser.element('#react-select-3-input').type('Uttar Pradesh').press_enter()
