@@ -85,7 +85,3 @@ def select_city(value):
 def assert_fields(*args):
     browser.element('.table').all('td').even.should(have.texts(args))
 
-
-def scroll_to_address():
-    scroll_to('#currentAddress')
-
