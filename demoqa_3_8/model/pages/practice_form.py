@@ -1,12 +1,13 @@
 from selene import have, command
 from selene.support.shared import browser
 from demoqa_3_8.model.controls import dropdown
-from demoqa_3_8.model.controls import datepicker
 from demoqa_3_8.model.controls import radiobutton
 from demoqa_3_8.model.controls import checkbox
 from demoqa_3_8.model.data.user import User
 from demoqa_3_8.utils import path_to_file
 from demoqa_3_8.utils.scroll import scroll_to
+from demoqa_3_8.model.controls import birthday
+from demoqa_3_8.utils import work_with_path
 
 
 class Form:
@@ -29,22 +30,11 @@ class Form:
     def select_gender(self, user):
         radiobutton.gender('[name=gender]', user.gender)
 
+    def add_data_birth(self, user):
+        birthday.add_birthday(user)
+
     def type_phone_number(self, user):
         browser.element('#userNumber').type(user.phone)
-
-    def click_on_datepicker(self):
-        browser.element('#dateOfBirthInput').click()
-
-    def pick_month(self, user):
-        browser.element('.react-datepicker__month-select').click()
-        datepicker.date('.react-datepicker__month-select', user.birthday_month)
-
-    def pick_year(self, user):
-        browser.element('.react-datepicker__year-select').click()
-        datepicker.date('.react-datepicker__year-select', user.birthday_year)
-
-    def pick_day(self, user):
-        browser.element(f'.react-datepicker__day--0{user.birthday_day}').click()
 
     def type_subject(self, user):
         browser.element('#subjectsInput').type(user.subject).press_enter()
@@ -64,6 +54,10 @@ class Form:
     def submit(self):
         browser.element('#submit').press_enter()
 
+    def upload_file(self):
+        path = work_with_path.get_path('attachments/photo.jpg')
+        browser.element('#uploadPicture').set_value(path)
+
     def select_state(self, user):
         dropdown.select('#state', user.state)
 
@@ -73,12 +67,6 @@ class Form:
     def assert_fields(self, *args):
         browser.element('.table').all('td').even.should(have.texts(args))
 
-    def add_birthday(self, user):
-        self.click_on_datepicker()
-        self.pick_month(user)
-        self.pick_year(user)
-        self.pick_day(user)
-
     def submit_form(self, user):
         self.given_opened()
         self.type_firstname(user)
@@ -87,7 +75,7 @@ class Form:
         self.type_phone_number(user)
         self.type_address(user)
         self.select_gender(user)
-        self.add_birthday(user)
+        self.add_data_birth(user)
         self.type_subject(user)
         self.select_hobby(user)
         scroll_to('#state')
