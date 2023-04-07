@@ -78,6 +78,7 @@ class Form:
         self.add_data_birth(user)
         self.type_subject(user)
         self.select_hobby(user)
+        self.upload_file()
         scroll_to('#state')
         self.select_state(user)
         self.select_city(user)
