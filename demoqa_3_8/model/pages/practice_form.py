@@ -79,8 +79,8 @@ class Form:
         self.type_subject(user)
         self.select_hobby(user)
         self.upload_file()
-        scroll_to('#state')
         self.select_state(user)
+        scroll_to('#state')
         self.select_city(user)
         self.submit()
 
