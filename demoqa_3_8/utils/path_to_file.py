@@ -1,6 +1,6 @@
 from selene.support.shared import browser
 import os
-import attachments
+from tests import attachments
 
 
 def create_path(selector, path):
