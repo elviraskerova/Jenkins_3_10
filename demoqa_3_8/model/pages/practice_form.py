@@ -55,7 +55,7 @@ class Form:
         browser.element('#submit').press_enter()
 
     def upload_file(self):
-        path = work_with_path.get_path('attachments/photo.jpg')
+        path = work_with_path.get_path('tests/attachments/photo.jpg')
         browser.element('#uploadPicture').set_value(path)
 
     def select_state(self, user):
